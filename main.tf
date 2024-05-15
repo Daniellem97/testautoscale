@@ -13,8 +13,7 @@ module "infra_nonprod_workerpool" {
   vpc_subnets     = var.worker_pool_subnets
   ec2_instance_type = "t3.small"
   poweroff_delay = var.poweroff_delay
-  
-
+  spacelift_api_key_endpoint = var.spacelift_api_key_endpoint
   spacelift_api_key_id     = var.spacelift_api_key_id
   spacelift_api_key_secret = var.spacelift_api_key_secret
 }
