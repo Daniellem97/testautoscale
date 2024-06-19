@@ -20,7 +20,9 @@ module "my_workerpool" {
   configuration = <<-EOT
     export SPACELIFT_TOKEN="${var.worker_pool_config}"
     export SPACELIFT_POOL_PRIVATE_KEY="${var.worker_pool_private_key}"
+    export SPACELIFT_DOCKER_CONFIG_DIR="/home/ssm-user/.docker"
   EOT
+}
 
   min_size        = 1
   max_size        = 3
