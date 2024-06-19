@@ -20,8 +20,19 @@ module "my_workerpool" {
   configuration = <<-EOT
     export SPACELIFT_TOKEN="${var.worker_pool_config}"
     export SPACELIFT_POOL_PRIVATE_KEY="${var.worker_pool_private_key}"
-    export SPACELIFT_DOCKER_CONFIG_DIR="/home/ssm-user/.docker"
+    export SPACELIFT_DOCKER_CONFIG_DIR="/home/spacelift/.docker"
   EOT
+
+  # Add the user data script
+  user_data = <<-EOF
+    #!/bin/bash
+    useradd -u 1983 -m spacelift
+    mkdir -p /home/spacelift/.docker
+    cp -r /home/ssm-user/.docker/config.json /home/spacelift/.docker/
+    chown -R spacelift:spacelift /home/spacelift/.docker
+    chmod -R 700 /home/spacelift/.docker
+    echo 'export SPACELIFT_DOCKER_CONFIG_DIR=/home/spacelift/.docker' >> /home/spacelift/.bash_profile
+  EOF
 
 
   min_size        = 1
