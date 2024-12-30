@@ -24,7 +24,7 @@ module "my_workerpool" {
   EOT
 
 
-  autoscaler_version     = "1.0.0" # Explicitly set the autoscaler version
+  autoscaler_version     = "v1.0.1" # Explicitly set the autoscaler version
   min_size               = 1
   max_size               = 3
   worker_pool_id         = var.worker_pool_id
