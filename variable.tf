@@ -55,3 +55,7 @@ variable "autoscaling_max_terminate" {
   type        = number
   default     = 1
 }
+
+variable "autoscaler_version" {
+  default = "latest"
+}
